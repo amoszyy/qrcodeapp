@@ -4,7 +4,7 @@ const superadminModel = require("../models/superadmin.model");
 
 const registerSuperAdmin = (req, res) => {
     console.log(req.body);
-    superadminModelModel.findOne({email:req.body.email }, (err, result) => {});
+    superadminModel.findOne({email:req.body.email }, (err, result) => {});
     let form = new superadminModel(req.body);
     form.save((err) => {
       if (err) {
