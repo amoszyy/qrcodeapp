@@ -5,7 +5,7 @@ let superadminSchema= mongoose.Schema({
     surname:{required:true, type:String},
     email:{required:true, type:String},
     password:{required:true, type:String},
-    phonenumber:{required:true, type:String}
+    phonenumber:{required:true, type:Number}
 })
 
 let saltRound =10
