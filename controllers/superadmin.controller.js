@@ -9,7 +9,7 @@ const registerSuperAdmin = (req, res) => {
     form.save((err) => {
       if (err) {
         console.log(err);
-        res.send({ message: "unable to register", status: false });
+        res.send({err, message: "unable to register", status: false });
   
         console.log("operation failed");
       } else {
