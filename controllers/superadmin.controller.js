@@ -6,6 +6,12 @@ const registerSuperAdmin = (req, res) => {
     console.log(req.body);
     superadminModel.findOne({email:req.body.email }, (err, result) => {});
     let form = new superadminModel(req.body);
+    let firstname = req.body.firstname
+    let surname = req.body.surname
+    let email = req.body.email
+    let phonenumber = req.body.phonenumber
+    let signUpDetails = {firstname, surname, email, phonenumber}
+    
     form.save((err) => {
       if (err) {
         console.log(err);
@@ -16,7 +22,7 @@ const registerSuperAdmin = (req, res) => {
         console.log("successful");
         res.send({
           message: "Registered Successfully",
-          details: form,
+          details: signUpDetails,
           status: true,
         });
       }
