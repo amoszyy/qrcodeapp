@@ -31,20 +31,25 @@ const registerSuperAdmin = (req, res) => {
 
   const authenticateSuperAdmin = (req, res) => {
     // console.log(req.body)
-    let { password } = req.body;
+    let { password } = req.body; 
     superadminModel.findOne({email:req.body.email}, (err, user) => {
       if (err) {
         res.send({ message: "server error", status:false});
         console.log("error guyy");
       } else {
-        if (user) {
+        if (user) { 
           user.validatePassword(password, (err, same) => {
             if (err) {
               res.send({ message: "Server error", status:false});
             } else {
               if (same) {
+                let firstname = user.firstname
+                let surname = user.surname
+                let email = user.email
+                let phonenumber = user.phonenumber
+                let loginDetails = {firstname, surname, email, phonenumber}
                 res.send({
-                  user,
+                  user: loginDetails,
                   message: "user logged in successfully",
                   status: true,
                 });
@@ -55,9 +60,8 @@ const registerSuperAdmin = (req, res) => {
               }
             }
           });
-          // res.send({message:"e exist", status:true})
         } else {
-          res.send({ message:"wrong email"});
+          res.send({ message:"check email and ensure it is correct"});
         }
       }
     });
